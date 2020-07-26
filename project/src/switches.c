@@ -1,13 +1,13 @@
 #include <msp430.h>
 #include "switches.h"
-#include "led.h"
-#include "stateMachines.h"
+#include "song.h"
 
 char switch1_state_down,
   switch2_state_down,
   switch3_state_down,
-  switch4_state_down,
-  switch_state_changed; /* effectively boolean */
+  switch4_state_down;
+int state = 0;
+  
 
 static char switch_update_interrupt_sense()
 {
@@ -25,51 +25,67 @@ void switch_init()			/* setup switch */
   P2OUT |= SWITCHES;		/* pull-ups for switches */
   P2DIR &= ~SWITCHES;		/* set switches' bits for input */
   switch_update_interrupt_sense();
-  switch_interrupt_handler();
 }
 
 void switch_interrupt_handler()
 {
   char p2val = switch_update_interrupt_sense();
 
-  switch1_state_down = (p2val & SW1) ? 0 : 1;    /* 0 when switch is up */
-  switch2_state_down = (p2val & SW2) ? 0 : 1;
-  switch3_state_down = (p2val & SW3) ? 0 : 1;
-  switch4_state_down = (p2val & SW4) ? 0 : 1;
+  /*Specifies which button is pressed down*/
+  switch1_state_down = (p2val & SW1) ? 0 : 1; //0 when switch1 is up
+  switch2_state_down = (p2val & SW2) ? 0 : 1; //0 when switch2 is up
+  switch3_state_down = (p2val & SW3) ? 0 : 1; //0 when switch3 is up
+  switch4_state_down = (p2val & SW4) ? 0 : 1; //0 when switch4 is up
 
-  if(switch1_state_down){
-    led_toggle();               /* alternate between turning on green or red led */
-  }
-
-  if(switch2_state_down){
-
-    static char press = 0;
-
-    switch(press){
-      
-    case 0:
-      bothLedOn();
-      press = 1;
-      break;
-
-    case 1:
-      _enable_interrupts();    /* enable periodic interrupt */
-      press = 2;
-      break;
-
-    case 2:
-      WDTCTL = WDTPW + WDTHOLD; /* turn off watchdog timer */
-      bothLedOff();
-      press = 0;
-      break;
+  /*Specifies the states (where they and and where they go to)*/
+  if(switch1_state_down) /*SW1 plays song and changes background color */
+    {
+      state = 1;
+      curr_verse = 0; //Restarts notes in song to zero
     }
-  }
 
-  if(switch3_state_down){
-    song();
-  }
+  if(switch2_state_down) /*SW2 Displays my first dog*/
+    {
+      state = 2;
+    }
 
-  if(switch4_state_down){
-    tone();
-  }
+  if(switch3_state_down) /*SW3 displays my second dog*/
+    {
+      state = 3;
+    }
+
+  if(switch4_state_down) /*SW4 displays my third dog*/
+    {
+      state = 4;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
