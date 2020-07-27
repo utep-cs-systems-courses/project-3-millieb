@@ -1,5 +1,6 @@
 #include "lcdutils.h"
 #include "lcddraw.h"
+#include "lcddraw.c"
 #include "stateMachines.h"
 
 /*Dog 2*/
@@ -9,7 +10,7 @@ void dog_two()
 
   clearScreen(COLOR_MAGENTA);
 
-  drawString8x12(35, 40, "My dog KIRA", COLOR_GOLD, COLOR_MAGENTA);
+  drawString8x12(35,40,"My dog KIRA", COLOR_GOLD, COLOR_MAGENTA);
 
   //face
   fillRectangle(35, 90, 60, 60, COLOR_WHITE);
@@ -30,7 +31,7 @@ void dog_two()
 }
 
 /*dog 3*/
-void dog_3()
+void dog_three()
 {
   dogState3 = 1;
 
