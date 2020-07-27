@@ -1,6 +1,5 @@
 #include "lcdutils.h"
 #include "lcddraw.h"
-#include "lcddraw.c"
 #include "stateMachines.h"
 
 /*Dog 2*/
