@@ -23,6 +23,18 @@ void drawPixel(u_char col, u_char row, u_int colorBGR);
  */
 void fillRectangle(u_char colMin, u_char rowMin, u_char width, u_char height, u_int colorBGR);
 
+
+/** Draw and fill Iso Triangle
+ *
+ *  \param colMin Column start
+ *  \param rowMin Row start
+ *  \param width Width of triangle
+ *  \param height height of triangle
+ *  \param colorBGR Color of triangle in BGR
+ **/
+void drawIsoTriangle(u_char colMin, u_char rowMin, double width, double height, u_int colorBGR);
+
+
 /** Clear screen (fill with color)
  *  
  *  \param colorBGR The color to fill screen
@@ -49,6 +61,13 @@ void drawString5x7(u_char col, u_char row, char *string,
  */
 void drawChar5x7(u_char col, u_char row, char c, 
 		 u_int fgColorBGR, u_int bgColorBGR);
+
+void drawString8x12(u_char col, u_char row, char *string,
+		    u_int fgColorBGR, u_int bgColorBGR);
+
+void drawChar8x12(u_char col, u_char row, char c,
+		  u_int fgColorBGR, u_int bgColorBGR);
+
 
 /** Draw rectangle outline
  *  
