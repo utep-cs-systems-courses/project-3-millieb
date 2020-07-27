@@ -1,11 +1,11 @@
 #ifndef stateMachine_included
 #define stateMachine_included
 
-void led_toggle();
-void bothLedOn();
-void bothLedOff();
-void led_dim();
-void song();
-void tone();
+void stateAdvance();
+
+extern char state;
+extern char dogState2;
+extern char dogState3;
+extern char dogState4;
 
 #endif //included
