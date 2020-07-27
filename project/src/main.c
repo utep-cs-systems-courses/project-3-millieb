@@ -13,7 +13,9 @@ void main(void)
   buzzer_init(); //buzzer set up
 
   clearScreen(COLOR_AQUAMARINE); //screen set up
-  drawString8x12(35,55,"Arch1 - Summer 2020",COLOR_GOLD,COLOR_AQUAMARINE);
+  drawString8x12(5,50,"Arch1",COLOR_GOLD,COLOR_AQUAMARINE);
+  drawString8x12(5,65,"Summer 2020", COLOR_GOLD, COLOR_AQUAMARINE);
+  drawString8x12(5,80,"Mildred Brito", COLOR_GOLD, COLOR_AQUAMARINE); 
 
   enableWDTInterrupts(); //for interruptions
 
