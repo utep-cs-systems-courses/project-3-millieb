@@ -34,4 +34,32 @@ if(curr_verse == 46) //reaches end of song
    }
 }
 
+/* Welcome */
+void welcome() {
+  // This method would be called at the beginning as a welcome
+  static char welcome_state = 0;
+
+  // Plays a series of notes
+  switch(welcome_state) {
+  case 0:
+    buzzer_set_period(C1);
+    welcome_state = 1;
+    break;
+
+  case 1:
+    buzzer_set_period(G);
+    welcome_state = 2;
+    break;
+
+  case 2:
+    buzzer_set_period(C1);
+    welcome_state = 3;
+    break;
+
+  case 3:
+    buzzer_set_period(0); // End melody
+    break;
+  }
+}
+
 

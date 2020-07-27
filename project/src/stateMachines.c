@@ -61,9 +61,9 @@ void stateAdvance()
       dogState2 = 0;
       dogState3 = 0;
 
-      if(catState4 == 0)
+      if(dogState4 == 0)
 	{
-	  cat_four();
+	  dog_four();
 	}
       break;
 
