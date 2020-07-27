@@ -73,7 +73,7 @@ void clearScreen(u_int colorBGR)
 
 /** 5x7 font - this function draws background pixels
  *  Adapted from RobG's EduKit
- */
+ 
 void drawChar5x7(u_char rcol, u_char rrow, char c, 
      u_int fgColorBGR, u_int bgColorBGR) 
 {
@@ -82,7 +82,7 @@ void drawChar5x7(u_char rcol, u_char rrow, char c,
   u_char bit = 0x01;
   u_char oc = c - 0x20;
 
-  lcd_setArea(rcol, rrow, rcol + 4, rrow + 7); /* relative to requested col/row */
+  lcd_setArea(rcol, rrow, rcol + 4, rrow + 7); /* relative to requested col/row 
   while (row < 8) {
     while (col < 5) {
       u_int colorBGR = (font_5x7[oc][col] & bit) ? fgColorBGR : bgColorBGR;
@@ -94,6 +94,7 @@ void drawChar5x7(u_char rcol, u_char rrow, char c,
     row++;
   }
 }
+*/
 
 /** Draw string at col,row
  *  Type:
@@ -106,7 +107,7 @@ void drawChar5x7(u_char rcol, u_char rrow, char c,
  *  \param string The string
  *  \param fgColorBGR Foreground color in BGR
  *  \param bgColorBGR Background color in BGR
- */
+ 
 void drawString5x7(u_char col, u_char row, char *string,
 		u_int fgColorBGR, u_int bgColorBGR)
 {
@@ -116,11 +117,11 @@ void drawString5x7(u_char col, u_char row, char *string,
     cols += 6;
   }
 }
+*/
 
 /* 8x12 font - this function draws background pixels
  * adapted from RobG's EduKit
  */
-
 void drawChar8x12(u_char rcol, u_char rrow, char c, u_int fgColorBGR, u_int bgColorBGR)
 {
   u_char col = 0;
