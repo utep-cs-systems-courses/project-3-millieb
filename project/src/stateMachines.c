@@ -1,130 +1,76 @@
 #include <msp430.h>
 #include "stateMachines.h"
-#include "led.h"
-#include "buzzer.h"
 #include "switches.h"
+#include "song.h"
+#include "dog.h"
+#include "lcdutils.h"
 
-void redLedOn()
+char dogState2 = 0;
+char dogState3 = 0;
+char dogState4 = 0;
+
+/*Moving between states*/
+void stateAdvance()
 {
-  red_on = 1;
-  green_on = 0;
-  leds_changed = 1;
-  led_update();
-}
-
-void greenLedOn()
-{
-  green_on = 1;
-  red_on = 0;
-  leds_changed = 1;
-  led_update();
-}
-
-void led_toggle()
-{
-  static char state = 0;
-
   switch(state)
     {
-    case 0:
-      redLedOn();
-      state = 1;
-      break;
-
     case 1:
-      greenLedOn();
-      state = 0;
-      break;
-    }
-}
-
-void bothLedOn()
-{
-  red_on = 1;
-  green_on = 1;
-  leds_changed = 1;
-  led_update();
-}
-
-void bothLedOff()
-{
-  red_on = 0;
-  green_on = 0;
-  leds_changed = 0;
-  led_update();
-}
-
-void led_dim()
-{
-  static char state2 = 0;
-
-  switch(state2)
-    {
-    case 0:
-      bothLedOn();
-      state2 = 1;
-      break;
-
-    case 1:
-      bothLedOff();
-      state2 = 0;
-      break;
-    }
-}
-
-void song()
-{
-  int notes[5] = {698, 523, 0, 880, 1047};
-
-  for(int i = 0; i < 6; i++)
-    {
-      buzzer_set_period(notes[i]);
-      __delay_cycles(2500000);
-    }
-  buzzer_set_period(0);
-}
-
-void tone()
-{
-  static char tone = 0;
-
-  switch(tone)
-    {
-    case 0:
-      buzzer_set_period(523);
-      tone = 1;
-      break;
-
-    case 1:
-      buzzer_set_period(1047);
-      tone = 2;
+      if(curr_verse == 0)
+	{
+	  clearScreen(COLOR_PALE_GREEN);
+	}
+      play_legend_of_zelda();
       break;
 
     case 2:
-      buzzer_set_period(988);
-      tone = 3;
+      //reset to note 0 for state1
+      curr_verse = 0;
+      buzzer_set_period(0);
+
+      //restarting dog images values
+      dogState3 = 0;
+      dogState4 = 0;
+
+      if(dogState2 == 0)
+	{
+	  dog_two();
+	}
       break;
 
     case 3:
+      //Again restarting to note 0 for state 1
+      curr_verse = 0;
       buzzer_set_period(0);
-      tone = 0;
+
+      //again restarting dog image values
+      dogState2 = 0;
+      dogState4 = 0;
+
+      if(dogState3 == 0)
+	{
+	  dog_three();
+	}
       break;
+
+    case 4:
+      //Again restarting to note 0 for state 1
+      curr_verse = 0;
+      buzzer_set_period(0);
+
+      //again restarting dog image values
+      dogState2 = 0;
+      dogState3 = 0;
+
+      if(catState4 == 0)
+	{
+	  cat_four();
+	}
+      break;
+
+    default:
+      welcome();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
