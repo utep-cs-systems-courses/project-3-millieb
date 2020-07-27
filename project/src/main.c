@@ -4,9 +4,15 @@
 #include "buzzer.h"
 #include "lcdutils.h"
 #include "lcddraw.h"
+#include "led.h"
+
+int redrawScreen = 1;
 
 void main(void)
 {
+  P1DIR |= LED_GREEN;
+  P1OUT |= LED_GREEN;
+  
   configureClocks();
   switch_init(); //sets up switches
   lcd_init(); //graphic display set up
@@ -20,4 +26,16 @@ void main(void)
   enableWDTInterrupts(); //for interruptions
 
   or_sr(0x18); //CPU off, GIE on
+
+  for(;;)
+    {
+      while(!redrawScreen)
+	{
+	  P1OUT &= ~LED_GREEN;
+	  or_sr(0x18);
+	}
+      P1OUT |= LED_GREEN;
+      __delay_cycles(250000);
+      redrawScreen = 0;
+    }
 }
