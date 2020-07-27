@@ -5,9 +5,10 @@
 void __interrupt_vec(WDT_VECTOR) WDT(){/* 250 interrupts/sec */
 
   static char blink_count = 0;
-
-  if (++blink_count == 1) {
-    led_dim();
+  char beat = 68; //Allows the necessary interrupts for an eighth note
+  
+  if (++blink_count == beat) {
+    stateAdvance();
     blink_count = 0;
   }
 }
