@@ -6,17 +6,17 @@ LDFLAGS	       = -L/opt/ti/msp430_gcc/include
 
 #switch the compiler (for the internal make rules)
 CC	       = msp430-elf-gcc
-AS             = msp430-elf-as
+AS             = msp430-elf-as -mcpu=msp430 --traditional-format -mp
 
-all: main.elf
+all: button.elf
 
 #additional rules for files
-main.elf: ${COMMON_OBJECTS} p2_interrupt_handler.o WDInterruptHandler.o led.o switches.o buzzer.o main.o stateMachines.o ../lib/libTimer.a
+button.elf: ${COMMON_OBJECTS} p2_interrupt_handler.o song.o dog.o lcddraw.o lcdutils.o font-8x12.o WDInterruptHandler.o switches.o buzzer.o main.o stateMachines.o ../lib/libTimer.a
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
 
-load: main.elf
-	msp430loader.sh main.elf
+load: button.elf
+	msp430loader.sh button.elf
 
 
 clean:
