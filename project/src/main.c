@@ -3,6 +3,7 @@
 #include "switches.h"
 #include "buzzer.h"
 #include "lcdutils.h"
+#include "lcddraw.h"
 
 void main(void)
 {
@@ -12,7 +13,7 @@ void main(void)
   buzzer_init(); //buzzer set up
 
   clearScreen(COLOR_AQUAMARINE); //screen set up
-  drawString8x12(35, 55, "Arch1 - Summer 2020", COLOR_GOLD, COLOR_AQUAMARINE);
+  drawString8x12(35,55,"Arch1 - Summer 2020",COLOR_GOLD,COLOR_AQUAMARINE);
 
   enableWDTInterrupts(); //for interruptions
 
