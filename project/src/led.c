@@ -2,6 +2,7 @@
 #include "led.h"
 #include "switches.h"
 
+unsigned char leds_changed = 0;
 
 void led_init()
 {
