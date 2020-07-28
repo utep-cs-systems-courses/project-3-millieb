@@ -1,8 +1,8 @@
 #include <msp430.h>
 #include "switches.h"
+#include "stateMachines.h"
 #include "song.h"
 #include "led.h"
-#include "stateMachines.h"
 #include "lcdutils.h"
 #include "lcddraw.h"
 
