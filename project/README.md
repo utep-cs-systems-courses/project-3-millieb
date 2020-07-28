@@ -6,7 +6,7 @@
 3. Go into "src" folder.
 4. Run "make load"
 
-##What to Expect
+###How to Use
 
 1. You will see a welcome screen if make load is properly run.
 2. S1 button will play (badly) the "Legend of Zelda" theme.
