@@ -1,12 +1,17 @@
 #include <msp430.h>
 #include "switches.h"
 #include "song.h"
+#include "led.h"
+#include "stateMachines.h"
+#include "lcdutils.h"
+#include "lcddraw.h"
 
 char switch1_state_down,
   switch2_state_down,
   switch3_state_down,
   switch4_state_down;
 int state = 0;
+int redrawScreen;
   
 
 static char switch_update_interrupt_sense()
@@ -25,6 +30,7 @@ void switch_init()			/* setup switch */
   P2OUT |= SWITCHES;		/* pull-ups for switches */
   P2DIR &= ~SWITCHES;		/* set switches' bits for input */
   switch_update_interrupt_sense();
+  switch_interrupt_handler();
 }
 
 void switch_interrupt_handler()
@@ -42,21 +48,25 @@ void switch_interrupt_handler()
     {
       state = 1;
       curr_verse = 0; //Restarts notes in song to zero
+      redrawScreen = 1;
     }
 
   if(switch2_state_down) /*SW2 Displays my first dog*/
     {
       state = 2;
+      redrawScreen = 1;
     }
 
   if(switch3_state_down) /*SW3 displays my second dog*/
     {
       state = 3;
+      redrawScreen = 1;
     }
 
   if(switch4_state_down) /*SW4 displays my third dog*/
     {
       state = 4;
+      redrawScreen = 1;
     }
 
 }
