@@ -4,6 +4,11 @@
 #include "song.h"
 #include "dog.h"
 #include "lcdutils.h"
+#include "lcddraw.h"
+#include <libTimer.h>
+#include "led.h"
+#include "buzzer.h"
+
 
 char dogState2 = 0;
 char dogState3 = 0;
@@ -20,6 +25,7 @@ void stateAdvance()
 	  clearScreen(COLOR_PALE_GREEN);
 	}
       play_legend_of_zelda();
+      toggle_on();
       break;
 
     case 2:
@@ -34,6 +40,7 @@ void stateAdvance()
       if(dogState2 == 0)
 	{
 	  dog_two();
+	  toggle_off();
 	}
       break;
 
@@ -49,6 +56,7 @@ void stateAdvance()
       if(dogState3 == 0)
 	{
 	  dog_three();
+	  led_dim();
 	}
       break;
 
