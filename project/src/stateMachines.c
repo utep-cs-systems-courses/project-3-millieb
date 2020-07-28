@@ -40,8 +40,8 @@ void stateAdvance()
       if(dogState2 == 0)
 	{
 	  dog_two();
-	  toggle_off();
 	}
+      toggle_off();
       break;
 
     case 3:
@@ -56,8 +56,8 @@ void stateAdvance()
       if(dogState3 == 0)
 	{
 	  dog_three();
-	  led_dim();
 	}
+      led_dim();
       break;
 
     case 4:
