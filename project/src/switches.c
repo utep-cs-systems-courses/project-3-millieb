@@ -5,6 +5,7 @@
 #include "led.h"
 #include "lcdutils.h"
 #include "lcddraw.h"
+#include "buzzer.h"
 
 char switch1_state_down,
   switch2_state_down,
@@ -68,7 +69,11 @@ void switch_interrupt_handler()
       state = 4;
       redrawScreen = 1;
     }
-
+  else
+    {
+      clearWindow();
+      state = 0;
+    }
 }
 
 
