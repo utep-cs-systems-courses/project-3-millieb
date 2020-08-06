@@ -1,6 +1,7 @@
 #include "lcdutils.h"
 #include "lcddraw.h"
 #include "stateMachines.h"
+#include "switches.h"
 
 /*Dog 2*/
 void dog_two()
@@ -77,7 +78,11 @@ void dog_four()
   fillRectangle(83,60,10,25,COLOR_WHITE);  
 }
 
-
+void clearWindow()
+{
+  fillRectangle(37,22,57,47, COLOR_WHITE);
+  
+}
 
 
 
