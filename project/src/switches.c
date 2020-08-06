@@ -71,8 +71,8 @@ void switch_interrupt_handler()
     }
   else
     {
-      clearWindow();
-      state = 0;
+      // clearWindow();
+      //state = 0;
     }
 }
 
