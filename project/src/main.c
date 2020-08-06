@@ -5,6 +5,7 @@
 #include "lcdutils.h"
 #include "lcddraw.h"
 #include "led.h"
+#include "stateMachines.h"
 
 int redrawScreen = 1;
 
@@ -16,6 +17,7 @@ void main(void)
   configureClocks();
   switch_init(); //sets up switches
   lcd_init(); //graphic display set up
+  led_init();
   buzzer_init(); //buzzer set up
 
   clearScreen(COLOR_AQUAMARINE); //screen set up
@@ -35,7 +37,27 @@ void main(void)
 	  or_sr(0x18);
 	}
       P1OUT |= LED_GREEN;
-      __delay_cycles(250000);
+      __delay_cycles(250000); //delay clock to make CPU more visible when CPU is on
       redrawScreen = 0;
+    }
+}
+
+void wdt_c_handler()
+{
+  static short count = 0;
+  static short dim = 0;
+  count++;
+  if(count == 125)
+    {
+      stateAdvance();
+      count = 0;
+    }
+  if(state == 2)
+    {
+      if(count == 5)
+	{
+	  stateAdvance();
+	  count = 0;
+	}
     }
 }
