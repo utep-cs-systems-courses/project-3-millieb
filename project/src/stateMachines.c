@@ -25,7 +25,7 @@ void stateAdvance()
 	  clearScreen(COLOR_PALE_GREEN);
 	}
       play_legend_of_zelda();
-      toggle_on();
+      // toggle_on();
       break;
 
     case 2:
@@ -41,7 +41,7 @@ void stateAdvance()
 	{
 	  dog_two();
 	}
-      toggle_off();
+      // toggle_off();
       break;
 
     case 3:
